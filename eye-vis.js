@@ -157,39 +157,7 @@ function drawEyes(message) {
   }
 }
 
-function compareEyes(message1, message2) {
-  data1 = messages[message1];
-  data2 = messages[message2];
-
-  var messageLine1 = [];
-  for (let i = 0; i < data1.length; i++) {
-    messageLine1 = messageLine1.concat(data1[i].split(""));
-  }
-  var messageLine2 = [];
-  for (let i = 0; i < data2.length; i++) {
-    messageLine2 = messageLine2.concat(data2[i].split(""));
-  }
-  const imageContainer = document.getElementById("imageContainer");
-  imageContainer.innerHTML = "";
-
-  const heading = document.createElement("div");
-  heading.className = "heading";
-  heading.innerHTML = `${message1} vs ${message2}`;
-  imageContainer.appendChild(heading);
-
-  console.log(messageLine1.length, messageLine2.length);
-  const longerMessage = document.createElement("div");
-  longerMessage.className = "subheading";
-  if (messageLine1.length > messageLine2.length) {
-    longerMessage.innerHTML = `${message1} is longer than ${message2}`;
-  }
-  if (messageLine1.length == messageLine2.length) {
-    longerMessage.innerHTML = `${message1} is equal to ${message2}`;
-  } else {
-    longerMessage.innerHTML = `${message2} is longer than ${message1}`;
-  }
-  imageContainer.appendChild(longerMessage);
-
+function comparison(data1, data2) {
   for (let i = 0; i < data1.length; i++) {
     const imageContainer = document.getElementById("imageContainer");
     const container = document.createElement("div");
@@ -217,6 +185,47 @@ function compareEyes(message1, message2) {
       }
     }
   }
+}
+function compareEyes(message1, message2) {
+  data1 = messages[message1];
+  data2 = messages[message2];
+
+  var messageLine1 = [];
+  for (let i = 0; i < data1.length; i++) {
+    messageLine1 = messageLine1.concat(data1[i].split(""));
+  }
+  var messageLine2 = [];
+  for (let i = 0; i < data2.length; i++) {
+    messageLine2 = messageLine2.concat(data2[i].split(""));
+  }
+  const imageContainer = document.getElementById("imageContainer");
+  imageContainer.innerHTML = "";
+
+  const longerMessage = document.createElement("div");
+  longerMessage.className = "subheading";
+  if (messageLine1.length > messageLine2.length) {
+    longerMessage.innerHTML = `${message1} is longer than ${message2}`;
+  }
+  if (messageLine1.length == messageLine2.length) {
+    longerMessage.innerHTML = `${message1} is equal to ${message2}`;
+  } else {
+    longerMessage.innerHTML = `${message2} is longer than ${message1}`;
+  }
+
+  imageContainer.appendChild(longerMessage);
+
+  const heading = document.createElement("div");
+  heading.className = "heading";
+  heading.innerHTML = `${message1} vs ${message2}`;
+  imageContainer.appendChild(heading);
+
+  comparison(data1, data2);
+
+  const heading2 = document.createElement("div");
+  heading2.className = "heading";
+  heading2.innerHTML = `${message2} vs ${message1}`;
+  imageContainer.appendChild(heading2);
+  comparison(data2, data1);
 }
 
 let comp1 = "East 1";
