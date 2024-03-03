@@ -128,7 +128,15 @@ const messages = {
   "East 5": E5
 };
 
-function comparison(data1, data2) {
+function comparison(message1, message2) {
+  data1 = messages[message1];
+  data2 = messages[message2];
+
+  const heading = document.createElement("div");
+  heading.className = "heading";
+  heading.innerHTML = `${message1} vs ${message2}`;
+  imageContainer.appendChild(heading);
+
   for (let i = 0; i < data1.length; i++) {
     const imageContainer = document.getElementById("imageContainer");
     const container = document.createElement("div");
@@ -160,7 +168,6 @@ function comparison(data1, data2) {
 function compareEyes(message1, message2) {
   data1 = messages[message1];
   data2 = messages[message2];
-
   var messageLine1 = [];
   for (let i = 0; i < data1.length; i++) {
     messageLine1 = messageLine1.concat(data1[i].split(""));
@@ -185,18 +192,15 @@ function compareEyes(message1, message2) {
 
   imageContainer.appendChild(longerMessage);
 
-  const heading = document.createElement("div");
-  heading.className = "heading";
-  heading.innerHTML = `${message1} vs ${message2}`;
-  imageContainer.appendChild(heading);
-
-  comparison(data1, data2);
-
-  const heading2 = document.createElement("div");
-  heading2.className = "heading";
-  heading2.innerHTML = `${message2} vs ${message1}`;
-  imageContainer.appendChild(heading2);
-  comparison(data2, data1);
+  comparison(message1, message2);
+  comparison(message2, message1);
+}
+function compareAll(message) {
+  const imageContainer = document.getElementById("imageContainer");
+  imageContainer.innerHTML = "";
+  for (let key in messages) {
+    if (key != message) comparison(message, key);
+  }
 }
 
 let comp1 = "East 1";
@@ -221,13 +225,20 @@ function init() {
         button.classList.remove("selected");
       });
       event.target.classList.add("selected");
+      if (button.textContent == "All") {
+        comp2 = button.textContent;
+        compareAll(comp1);
+        return;
+      }
       comp2 = button.textContent;
       compareEyes(comp1, comp2);
     });
     button.addEventListener("mouseenter", () => {
+      if (button.textContent == "All" || comp2 == "All") return;
       compareEyes(comp1, button.textContent);
     });
     button.addEventListener("mouseleave", () => {
+      if (button.textContent == "All" || comp2 == "All") return;
       compareEyes(comp1, comp2);
     });
   });
