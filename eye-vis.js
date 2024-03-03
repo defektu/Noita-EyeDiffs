@@ -213,7 +213,11 @@ function init() {
   dropdown1.addEventListener("change", () => {
     console.log("Dropdown 1 changed to: ", dropdown1.value);
     comp1 = dropdown1.value;
-    compareEyes(comp1, comp2);
+    if (comp2 == "All") {
+      compareAll(comp1);
+    } else {
+      compareEyes(comp1, comp2);
+    }
   });
 
   const buttons = document.querySelectorAll(".selector");
