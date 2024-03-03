@@ -180,7 +180,7 @@ function compareEyes(message1, message2) {
   if (messageLine1.length == messageLine2.length) {
     longerMessage.innerHTML = `${message1} is equal to ${message2}`;
   } else {
-    longerMessage.innerHTML = `${message2} is longer than ${message1}`;
+    longerMessage.innerHTML = `${message1} is shorter than ${message2}`;
   }
 
   imageContainer.appendChild(longerMessage);
