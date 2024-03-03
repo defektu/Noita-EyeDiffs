@@ -205,7 +205,7 @@ function compareAll(message) {
   }
 }
 
-let comp1 = "East 3";
+let comp1 = "East 1";
 let comp2 = "West 1";
 
 function init() {
