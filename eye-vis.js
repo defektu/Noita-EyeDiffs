@@ -128,35 +128,6 @@ const messages = {
   "East 5": E5
 };
 
-function drawEyes(message) {
-  data = messages[message];
-  const imageContainer = document.getElementById("imageContainer");
-
-  const heading = document.createElement("div");
-  heading.innerHTML = message;
-  heading.className = "heading";
-
-  imageContainer.appendChild(heading);
-
-  for (let i = 0; i < data.length; i++) {
-    const container = document.createElement("div");
-
-    if (i % 2 === 0) {
-      container.className = "image-container";
-    } else {
-      container.className = "image-container2";
-    }
-
-    imageContainer.appendChild(container);
-
-    for (let j = 0; j < data[i].length; j++) {
-      const img = document.createElement("img");
-      img.src = imageArray[data[i][j]];
-      container.appendChild(img);
-    }
-  }
-}
-
 function comparison(data1, data2) {
   for (let i = 0; i < data1.length; i++) {
     const imageContainer = document.getElementById("imageContainer");
