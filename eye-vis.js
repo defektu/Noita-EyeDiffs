@@ -184,10 +184,15 @@ function compareEyes(message1, message2) {
       const img = document.createElement("img");
       img.src = imageArray[data1[i][j]];
       container.appendChild(img);
-      if (data1[i][j] != data2[i][j]) {
-        img.style = "background-color:red;";
-      } else {
-        img.style = "background-color:lightgreen;";
+      if (
+        typeof data2[i] !== "undefined" &&
+        typeof data2[i][j] !== "undefined"
+      ) {
+        if (data1[i][j] != data2[i][j]) {
+          img.style = "background-color:red;";
+        } else {
+          img.style = "background-color:lightgreen;";
+        }
       }
     }
   }
@@ -210,7 +215,11 @@ function init() {
 
   // Add event listeners to each button
   buttons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
+      buttons.forEach((button) => {
+        button.classList.remove("selected");
+      });
+      event.target.classList.add("selected");
       comp2 = button.textContent;
       compareEyes(comp1, comp2);
     });

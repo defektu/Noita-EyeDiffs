@@ -9,6 +9,10 @@
   padding: 16px;
 }
 
+.selected {
+  background-color: lightblue;
+}
+
 .eye-container {
   justify-content: center;
   gap: calc(var(--eye-size) * 1px);
